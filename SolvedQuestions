@@ -1,0 +1,13 @@
+Over here even if we have declared the method as Static it is accessible using the object of that class.
+class Demo {
+    public static void display() {
+        System.out.println("I am in display");
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+       Demo ob = new Demo();  // Object creation (not necessary for calling static method)
+       ob.display();  // Calling static method using object reference (still works, but not recommended)
+    }
+}
