@@ -11,3 +11,14 @@ class Main {
        ob.display();  // Calling static method using object reference (still works, but not recommended)
     }
 }
+
+============================================================================================================
+Q) Covert List of String to upper case using Stream API?
+public class ListOfStringToUpperCase{
+    public static void main(String args[]){
+        List<String> names = Arrays.asList("Ram","Shyam","Mohan","Rohan");
+        List<String> filteredNameList = names.stream()
+            .map(n -> n.toUpperCase())
+            .collect(Collectors.toList());
+    }
+}
