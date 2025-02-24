@@ -22,3 +22,52 @@ public class ListOfStringToUpperCase{
             .collect(Collectors.toList());
     }
 }
+
+
+==============================================================================================================
+
+Hello, I want to design the frontend for the Todo app, which I developed using Spring boot and Data JPA(for db) and I want to write its frontend using HTML and CSS to perform the CRUD operations.
+I will provide you one API of my TODO app, please guide me in writing the frontend part and also suggest what should I use further to connect my backend to frontend(like some additional dependencies).
+
+Controller
+----------
+public ResponseEntity<Todo> createTodoHandler(@RequestBody Todo todo){
+
+        todo.setAddedDate(new Date());
+        Todo todo1 = todoService.createTodo(todo);
+        return ResponseEntity.status(HttpStatus.CREATED).body(todo1);
+    }
+
+Service
+--------
+public Todo createTodo(Todo todo) {
+        return jpaRepository.save(todo);
+    }
+
+Todo.java
+---------
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.Date;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@Entity
+@Table(name = "jpa_todo_table")
+public class Todo {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int Id;
+    private String title;
+    private String content;
+    private String status;
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private Date addedDate;
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private Date todoDate;
+}
